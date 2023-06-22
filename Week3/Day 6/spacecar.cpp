@@ -12,14 +12,17 @@ int main()
     int t;
     cin >> t;
 
-    multiset<unsigned long long, greater<unsigned long long>> setcar, setcharge;
+    // vector<long long> car, charger;
 
     while (t--)
     {
-        int n, m, h;
-        cin >> n >> m >> h;
+        multiset<long long, greater<long long>> setcar, setcharge;
+        int n, m;
+        long long h;
+        cin >> n >> m;
+        cin >> h;
 
-        unsigned long long input;
+        long long input;
         for (int i = 0; i < n; i++)
         {
             cin >> input;
@@ -31,7 +34,7 @@ int main()
             setcharge.insert(input);
         }
 
-        unsigned long long ans = 0;
+        long long ans = 0;
         while (n > 0 && m > 0)
         {
 
