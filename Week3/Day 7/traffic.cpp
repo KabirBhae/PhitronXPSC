@@ -18,7 +18,8 @@ int main()
         string streng;
         cin >> streng;
 
-        if(c=='g'){
+        if (c == 'g')
+        {
             cout << "0\n";
             continue;
         }
@@ -56,6 +57,5 @@ int main()
         }
         cout << maximum << endl;
     }
-
     return 0;
 }
