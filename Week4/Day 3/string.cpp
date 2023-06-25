@@ -9,42 +9,49 @@ int main()
     cin >> t;
     while (t--)
     {
-        string str, str2;
+        string str, strrrr2;
         cin >> str;
 
-        int freq[26] = {0};
         int count = 0, day = 0;
 
         for (int i = 0; i < str.size(); i++)
         {
-            if (count == 3 && str[i + 1] != str2[0] && str[i + 1] != str2[1] && str[i + 1] != str2[2])
+            if (count == 3)
             {
-                day++;
-                count = 0;
-                // cout << "day " << day << "values: ";
-
-                for (int i = 0; i < 3; i++)
+                // doesn't exist
+                if (!(str[i] == strrrr2[0] || str[i] == strrrr2[1] || str[i] == strrrr2[2]))
                 {
-                    // cout << str2[i] << ' ';
-                    freq[str2[i] - 'a'] = 0;
-                    str2.pop_back();
+                    day++;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        strrrr2.pop_back();
+                    }
+                    strrrr2.push_back(str[i]);
+                    count = 1;
+                }
+            }
+            else
+            {
+                // for the test case ubmrrmsum, mmmmmmmm
+                bool isDifferent = true;
+                for (int j = 0; j < strrrr2.size(); j++)
+                {
+                    if(str[i] == strrrr2[j]){
+                        isDifferent = false;
+                        break;
+                    }
                 }
 
-                cout <<  endl;
-            }
-            //"str2 size is " << str2.size() <<
-
-            if (freq[str[i] - 'a'] == 0)
-            {
-                freq[str[i] - 'a'] = 1;
-                str2.push_back(str[i]);
-                count++;
+                if(isDifferent){
+                    strrrr2.push_back(str[i]);
+                    count++;
+                }
+                
             }
         }
         if (count > 0)
             day++;
         cout << day << endl;
     }
-
     return 0;
 }
