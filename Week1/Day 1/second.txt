@@ -1,0 +1,44 @@
+
+
+vector<long long> printFirstNegativeInteger(long long int arr[],
+                                            long long int n, long long int k)
+{
+
+    vector<long long int> answer;
+
+    int right = 0, left = 0;
+    queue<long long int> q;
+
+    while (right < n)
+    {
+        if (arr[right] < 0)
+        {
+            q.push(arr[right]);
+        }
+        // not window size
+        if (right < k - 1)
+        {
+            right++;
+        }
+        // window size
+        else
+        {
+            if (!q.empty())
+            {
+                answer.push_back(q.front());
+            }
+            else
+            {
+                answer.push_back(0);
+            }
+            if (arr[left] < 0)
+            {
+                q.pop();
+            }
+
+            left++;
+            right++;
+        }
+    }
+    return answer;
+}

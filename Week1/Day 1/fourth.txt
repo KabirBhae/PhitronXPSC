@@ -1,0 +1,37 @@
+class Solution {
+  public:
+    vector<int> max_of_subarrays(vector<int> arr, int n, int k) {
+        multiset<int> ms;
+    vector<int> answer;
+    
+
+    int right = 0, mx = -1e7;
+    int left = 0;
+
+    while (right < n)
+    {
+        ms.insert(arr[right]);
+
+        // not window size
+        if (right < k - 1)
+        {
+            right++;
+        }
+        // window size
+        else
+        {
+            answer.push_back(*ms.rbegin());
+            
+
+            if (ms.find(arr[left]) != ms.end())
+            {
+                ms.erase(ms.find(arr[left]));
+            }
+
+            left++;
+            right++;
+        }
+    }
+    return answer;
+    }
+};

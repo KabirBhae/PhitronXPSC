@@ -1,0 +1,54 @@
+// User function template for C++
+class Solution
+{
+public:
+    int search(string pat, string txt)
+    {
+        int freq_txt[26] = {0};
+        int freq_pat[26] = {0};
+        int answer = 0;
+
+        for (char character : pat)
+        {
+            freq_pat[character - 'a']++;
+        }
+
+        int right = 0;
+        int left = 0;
+        bool isEqual = true;
+
+        for (int i = 0; i < txt.length(); i++)
+        {
+            freq_txt[txt[right] - 'a']++;
+            // not window size
+            if (right < pat.length() - 1)
+            {
+                right++;
+            }
+            // window size
+            else
+            {
+                isEqual = true;
+                for (int i = 0; i < 26; i++)
+                {
+                    if (freq_txt[i] != freq_pat[i])
+                    {
+                        isEqual = false;
+                        break;
+                    }
+                }
+
+                if (isEqual)
+                {
+                    answer++;
+                }
+                freq_txt[txt[left] - 'a']--;
+
+                left++;
+                right++;
+            }
+        }
+
+        return answer;
+    }
+};

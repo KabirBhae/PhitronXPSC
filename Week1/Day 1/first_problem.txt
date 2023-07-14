@@ -1,0 +1,32 @@
+class Solution
+{
+public:
+    long maximumSumSubarray(int K, vector<int> &Arr, int N)
+    {
+
+        int right = 0;
+        int left = 0;
+        long mx = -1, sum = 0;
+        while (right < N)
+        {
+            sum = sum + Arr[right];
+            // not window size
+            if (right < K - 1)
+            {
+                right++;
+            }
+            // window size
+            else
+            {
+                mx = std::max(mx, sum);
+
+                sum = sum - Arr[left];
+
+                left++;
+                right++;
+            }
+        }
+
+        return mx;
+    }
+};
